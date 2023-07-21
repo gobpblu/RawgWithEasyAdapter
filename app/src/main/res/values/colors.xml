@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_color">#039be5</color>
+    <color name="recyclerView_background">#22272F2B</color>
+    <color name="cardViewGame">#201E1D</color>
+    <color name="cardViewGenreGamesBackgroundTint">#141615</color>
+    <color name="primary_text">#DDD1CC</color>
+    <color name="circle_image">#000000</color>
+    <color name="metascore_green">#1DD433</color>
+    <color name="metascore_yellow">#E6DD3F</color>
+    <color name="metascore_red">#CF141D</color>
+    <color name="playtime">#A9CA9F</color>
+    <color name="platform_icon">@color/primary_text</color>
+    <color name="secondary_text">#808080</color>
+    <color name="genre_title">#CCFFFFFF</color>
+</resources>

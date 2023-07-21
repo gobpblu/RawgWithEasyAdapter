@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="imageViewCircle">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="genreTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/genre_title</item>
+        <item name="textAllCaps">true</item>
+        <item name="fontFamily">@font/b612_mono_bold</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">4dp</item>
+    </style>
+
+    <style name="cardViewGenreGames">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:backgroundTint">@color/cardViewGenreGamesBackgroundTint</item>
+    </style>
+
+    <style name="recyclerViewGenreGames">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">horizontal</item>
+    </style>
+
+    <style name="gameDetailsTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/crimson_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="gameDetailsTextViewValues" parent="gameDetailsTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="gameDetailsTextViewTitles" parent="gameDetailsTextView">
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="gameDetailsTextViewValuesWithFrame" parent="gameDetailsTextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:textColor">@color/playtime</item>
+        <item name="android:background">@drawable/title_frame</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+    </style>
+    <style name="gameItemLinearLayoutPlatforms">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="gameItemImageViewPlatforms">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <style name="gameItemTextView">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/crimson_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

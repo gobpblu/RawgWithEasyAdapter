@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Rawg</string>
+    <string name="title_sports">Sports</string>
+    <string name="title_adventure">Adventure</string>
+    <string name="title_rpg">RPG</string>
+    <string name="game_picture">Game picture</string>
+    <string name="game_icon_description">Game icon</string>
+    <string name="metascore">Metascore:</string>
+    <string name="screenshot_image">Screenshot image!</string>
+    <string name="screenshots">Screenshots</string>
+    <string name="release_date">Release date:</string>
+    <string name="updated">Updated:</string>
+    <string name="playtime">Average playtime:</string>
+    <string name="platforms">Platforms:</string>
+    <string name="game_platform_image">Game platform image</string>
+    <string name="loading_error">Some loading error was happened! Check your internet connection.</string>
+</resources>

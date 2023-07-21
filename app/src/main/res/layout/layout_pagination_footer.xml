@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvShowMore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="Загрузить ещё" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+</RelativeLayout>
