@@ -1,6 +1,5 @@
 package com.developer.android.rawg.main.ui.main
 
-import android.content.ClipData.Item
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.developer.android.rawg.R
 import com.developer.android.rawg.common.extensions.hideAndAddFragment
 import com.developer.android.rawg.databinding.FragmentAllGamesBinding
-import com.developer.android.rawg.main.model.GameType
+import com.developer.android.rawg.main.model.games.FullGame
 import com.developer.android.rawg.main.ui.main.adapter.controllers.GamesController
 import com.developer.android.rawg.main.ui.main.adapter.controllers.GenreController
 import dagger.hilt.android.AndroidEntryPoint
@@ -90,7 +89,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun onGameItemClicked(gameDetails: GameType.FullGame): Unit {
+    private fun onGameItemClicked(gameDetails: FullGame) {
         val fragment = GameDetailsFragment.newInstance(gameDetails)
         parentFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
             it.hideAndAddFragment(

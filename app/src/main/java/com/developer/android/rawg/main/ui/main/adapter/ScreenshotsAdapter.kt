@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.developer.android.rawg.R
 import com.developer.android.rawg.main.model.GameType
+import com.developer.android.rawg.main.model.games.FullGame
 import com.developer.android.rawg.main.model.games.ShortScreenshot
 import kotlin.Int
 
@@ -39,7 +40,7 @@ class ScreenshotsAdapter(): RecyclerView.Adapter<ScreenshotsAdapter.ScreenshotsV
     override fun getItemCount() = screenshotsList.size
 
 
-    fun addData(game: GameType.FullGame) {
+    fun addData(game: FullGame) {
         screenshotsList.addAll(game.shortScreenshots)
         notifyDataSetChanged()
     }

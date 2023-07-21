@@ -7,21 +7,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developer.android.rawg.databinding.GenreItemBinding
 import com.developer.android.rawg.main.api.model.genres.GenreDetailsResponse
 import com.developer.android.rawg.main.model.GameType
-import com.developer.android.rawg.main.model.genres.GameGenre
+import com.developer.android.rawg.main.model.genres.Genre
 import timber.log.Timber
 
 class GenreViewHolder(
     private val binding: GenreItemBinding,
     onGameItemClicked: (GameType.FullGame) -> Unit,
     onFailedListener: () -> Unit,
-    private val getGamesByGenre: (GameGenre) -> Unit,
+    private val getGamesByGenre: (Genre) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     constructor(
         parent: ViewGroup,
         onGameItemClicked: (GameType.FullGame) -> Unit,
         onFailedListener: () -> Unit,
-        getGamesByGenre: (GameGenre) -> Unit,
+        getGamesByGenre: (Genre) -> Unit,
     ) : this(
         GenreItemBinding.inflate(LayoutInflater.from(
             parent.context), parent, false),

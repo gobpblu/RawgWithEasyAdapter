@@ -5,7 +5,7 @@ import com.developer.android.rawg.common.mvp.MvpPresenter
 import com.developer.android.rawg.common.mvp.MvpView
 import com.developer.android.rawg.common.ui.recyclerview.PagingState
 import com.developer.android.rawg.main.model.GameType
-import com.developer.android.rawg.main.model.genres.GameGenre
+import com.developer.android.rawg.main.model.genres.Genre
 import com.developer.android.rawg.main.model.genres.Genres
 
 
@@ -21,8 +21,8 @@ interface MainContract : BaseFragmentContract {
 
     interface Presenter : MvpPresenter<View> {
         fun getGenres()
-        fun getGames(gameGenre: GameGenre)
-        fun refresh(gameGenre: GameGenre)
+        fun getGames(genre: Genre)
+        fun refresh(genre: Genre)
     }
 
 }

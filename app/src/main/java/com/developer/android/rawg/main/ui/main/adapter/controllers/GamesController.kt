@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developer.android.rawg.R
 import com.developer.android.rawg.databinding.ItemGamesBinding
 import com.developer.android.rawg.main.model.GameType
+import com.developer.android.rawg.main.model.games.FullGame
 import com.developer.android.rawg.main.ui.main.MainUi
 import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
@@ -17,9 +18,9 @@ import ru.surfstudio.android.easyadapter.pagination.PaginationState
 import timber.log.Timber
 
 class GamesController(
-    private val onGameItemClicked: (GameType.FullGame) -> Unit,
+    private val onGameItemClicked: (FullGame) -> Unit,
     private val onLoadGames: (genre: String, page: Int, itemPosition: Int) -> Unit,
-    ) : BindableItemController<MainUi.GamesList, GamesController.Holder>() {
+) : BindableItemController<MainUi.GamesList, GamesController.Holder>() {
 
     override fun getItemId(data: MainUi.GamesList): Any = data.genre
 
@@ -28,7 +29,8 @@ class GamesController(
         return Holder(parent)
     }
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<MainUi.GamesList>(parent, R.layout.item_games) {
+    inner class Holder(parent: ViewGroup) :
+        BindableViewHolder<MainUi.GamesList>(parent, R.layout.item_games) {
 
         private val binding = ItemGamesBinding.bind(itemView)
 
@@ -37,7 +39,8 @@ class GamesController(
         private lateinit var data: MainUi.GamesList
 
         private val adapter = EasyPaginationAdapter(footerController) {
-            val layoutManager = binding.rvGenre.layoutManager as? LinearLayoutManager ?: return@EasyPaginationAdapter
+            val layoutManager = binding.rvGenre.layoutManager as? LinearLayoutManager
+                ?: return@EasyPaginationAdapter
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 //            visibleItemPosition = firstVisibleItemPosition
             Timber.d("firstVisible: $firstVisibleItemPosition")
@@ -47,7 +50,6 @@ class GamesController(
         private val imageGameController = ImageGameController()
         private val descriptionGameController = DescriptionGameController()
         var visibleItemPosition = 0
-
 
         init {
             Timber.d("INIT BLOCK AGAIN")
@@ -70,20 +72,14 @@ class GamesController(
             if (data.page == 1) onLoadGames(data.genre, data.page, 0)
         }
 
-        private fun setAdapterItems(games: List<GameType>) {
+        private fun setAdapterItems(games: List<FullGame>) {
             val itemList = ItemList.create()
-                for (game in games) {
-                    when (game) {
-                        is GameType.FullGame -> itemList.add(game, fullGameController)
-                        is GameType.ImageGame -> itemList.add(game, imageGameController)
-                        is GameType.DescriptionGame -> itemList.add(game, descriptionGameController)
-                    }
+            for (game in games) {
+                itemList.add(game, fullGameController)
             }
             adapter.setItems(itemList, PaginationState.READY)
         }
 
     }
-
-
 
 }

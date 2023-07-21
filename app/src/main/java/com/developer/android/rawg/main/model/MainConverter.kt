@@ -4,11 +4,32 @@ import com.developer.android.rawg.main.api.model.games.*
 import com.developer.android.rawg.main.api.model.genres.GenreDetailsResponse
 import com.developer.android.rawg.main.api.model.genres.GenresResponse
 import com.developer.android.rawg.main.model.games.*
-import com.developer.android.rawg.main.model.genres.GameGenre
+import com.developer.android.rawg.main.model.genres.Genre
 import com.developer.android.rawg.main.model.genres.Genres
 import com.developer.android.rawg.utils.Utils
 
 object MainConverter {
+
+    fun convertToFullGames(
+        response: GamesResponse,
+        genres: String
+    ) : List<FullGame> {
+        return response.games.map { game ->
+            FullGame(
+                id = game.id,
+                name = game.name,
+                slug = genres,
+                released = game.released,
+                playTime = game.playTime,
+                backgroundImage = game.backgroundImage,
+                rating = game.rating,
+                metaCritic = game.metaCritic,
+                updated = game.updated,
+                shortScreenshots = shortScreenshotsFromNetwork(game.shortScreenshots),
+                parentPlatforms = parentPlatformsFromNetwork(game.parentPlatforms),
+            )
+        }
+    }
 
     fun fromNetwork(response: GamesResponse) =
         Games(
@@ -21,7 +42,7 @@ object MainConverter {
     fun fromNetwork(response: GenresResponse) =
         Genres(
             count = response.count,
-            gamesGenres = genreGamesFromNetwork(response.genres)
+            genresList = genreGamesFromNetwork(response.genres)
         )
 
     fun gamesFromNetwork(games: List<GameDetailsResponse>) =
@@ -103,7 +124,7 @@ object MainConverter {
 
     private fun genreGamesFromNetwork(genres: List<GenreDetailsResponse>) =
         genres.map {
-            GameGenre(
+            Genre(
                 name = it.name,
                 slug = it.slug
             )

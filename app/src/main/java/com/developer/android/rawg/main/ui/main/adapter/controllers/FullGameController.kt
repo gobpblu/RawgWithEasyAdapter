@@ -5,21 +5,22 @@ import com.bumptech.glide.Glide
 import com.developer.android.rawg.R
 import com.developer.android.rawg.databinding.GameItemBinding
 import com.developer.android.rawg.main.model.GameType
+import com.developer.android.rawg.main.model.games.FullGame
 import com.developer.android.rawg.main.model.games.ParentPlatformContainer
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import timber.log.Timber
 
 class FullGameController(
-    private val onGameItemClicked: (GameType.FullGame) -> Unit,
-    ) : BindableItemController<GameType.FullGame, FullGameController.Holder>() {
+    private val onGameItemClicked: (FullGame) -> Unit,
+    ) : BindableItemController<FullGame, FullGameController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup): Holder = Holder(parent)
 
-    override fun getItemId(data: GameType.FullGame): Any = data.id
+    override fun getItemId(data: FullGame): Any = data.id
 
     inner class Holder(parent: ViewGroup) :
-        BindableViewHolder<GameType.FullGame>(parent, R.layout.game_item) {
+        BindableViewHolder<FullGame>(parent, R.layout.game_item) {
 
         private val binding: GameItemBinding = GameItemBinding.bind(itemView)
 
@@ -34,7 +35,7 @@ class FullGameController(
             binding.imageViewNinthIcon,
             binding.imageViewTenthIcon)
 
-        override fun bind(data: GameType.FullGame) {
+        override fun bind(data: FullGame) {
             with(binding) {
                 Timber.i("FullGame -> bind()")
                 Glide.with(itemView.context).load(data.backgroundImage)

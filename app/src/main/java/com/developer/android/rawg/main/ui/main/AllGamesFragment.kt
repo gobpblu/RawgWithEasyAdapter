@@ -16,14 +16,10 @@ import com.developer.android.rawg.common.extensions.hideAndAddFragment
 import com.developer.android.rawg.common.ui.recyclerview.PagingState
 import com.developer.android.rawg.databinding.FragmentAllGamesBinding
 import com.developer.android.rawg.main.model.GameType
-import com.developer.android.rawg.main.model.genres.GameGenre
+import com.developer.android.rawg.main.model.genres.Genre
 import com.developer.android.rawg.main.model.genres.Genres
-import com.developer.android.rawg.main.ui.main.adapter.GenreAdapter
-import com.developer.android.rawg.main.ui.main.adapter.GenreComparator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class AllGamesFragment : Fragment() {
@@ -36,10 +32,6 @@ class AllGamesFragment : Fragment() {
 
     private val linearLayoutManager: LinearLayoutManager by lazy {
         LinearLayoutManager(requireContext())
-    }
-
-    private val genresAdapter: GenreAdapter by lazy {
-        GenreAdapter(GenreComparator)
     }
 
     private val viewModel: MainViewModel by viewModels()
@@ -59,7 +51,6 @@ class AllGamesFragment : Fragment() {
             if (rvOuter.layoutManager != linearLayoutManager)
                 rvOuter.apply {
                     layoutManager = linearLayoutManager
-                    adapter = genresAdapter
                 }
 //            presenter.getGenres()
 
@@ -92,19 +83,19 @@ class AllGamesFragment : Fragment() {
 //        genresAdapter.setGames(games, position)
     }
 
-    private fun getGamesByGenre(gameGenre: GameGenre) {
+    private fun getGamesByGenre(genre: Genre) {
 //        viewModel
 //        presenter.getGames(gameGenre)
     }
 
     private fun onGameItemClicked(gameDetails: GameType.FullGame) {
-        val fragment = GameDetailsFragment.newInstance(gameDetails)
-        parentFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
-            it.hideAndAddFragment(
-                addFragment = fragment,
-                id = R.id.fragmentContainer
-            )
-        }
+//        val fragment = GameDetailsFragment.newInstance(gameDetails)
+//        parentFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
+//            it.hideAndAddFragment(
+//                addFragment = fragment,
+//                id = R.id.fragmentContainer
+//            )
+//        }
     }
 
     private fun onFailedListener() {

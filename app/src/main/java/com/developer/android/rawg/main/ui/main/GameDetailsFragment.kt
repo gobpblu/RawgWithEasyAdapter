@@ -13,13 +13,14 @@ import com.developer.android.rawg.R
 import com.developer.android.rawg.common.mvp.BaseFragment
 import com.developer.android.rawg.databinding.FragmentGameDetailsBinding
 import com.developer.android.rawg.main.model.GameType
+import com.developer.android.rawg.main.model.games.FullGame
 import com.developer.android.rawg.main.ui.main.adapter.ScreenshotsAdapter
 
 private const val ARG1_GAME = "game"
 
 
 class GameDetailsFragment : BaseFragment(R.layout.fragment_game_details) {
-    private lateinit var gameDetails: GameType
+    private lateinit var gameDetails: FullGame
 
     private lateinit var binding: FragmentGameDetailsBinding
 
@@ -44,11 +45,12 @@ class GameDetailsFragment : BaseFragment(R.layout.fragment_game_details) {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        when (gameDetails) {
-            is GameType.FullGame -> fullGameBind(gameDetails as GameType.FullGame)
-            is GameType.ImageGame -> imageGameBind(gameDetails as GameType.ImageGame)
-            is GameType.DescriptionGame -> descriptionGameBind(gameDetails as GameType.DescriptionGame)
-        }
+//        when (gameDetails) {
+//            is GameType.FullGame -> fullGameBind(gameDetails as GameType.FullGame)
+//            is GameType.ImageGame -> imageGameBind(gameDetails as GameType.ImageGame)
+//            is GameType.DescriptionGame -> descriptionGameBind(gameDetails as GameType.DescriptionGame)
+//        }
+        fullGameBind(gameDetails)
 
     }
 
@@ -70,7 +72,7 @@ class GameDetailsFragment : BaseFragment(R.layout.fragment_game_details) {
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun fullGameBind(game: GameType.FullGame) = with(binding) {
+    private fun fullGameBind(game: FullGame) = with(binding) {
         context?.let { Glide.with(it).load(game.backgroundImage).placeholder(R.drawable.abstract_game).into(binding.imageViewDetailsIcon) }
         binding.textViewGameDetailsName.text = game.name
         textViewMetascoreValue.text = buildString { append("${game.metaCritic}") }
@@ -114,7 +116,7 @@ class GameDetailsFragment : BaseFragment(R.layout.fragment_game_details) {
 
     companion object {
         @JvmStatic
-        fun newInstance(game: GameType) =
+        fun newInstance(game: FullGame) =
             GameDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG1_GAME, game)

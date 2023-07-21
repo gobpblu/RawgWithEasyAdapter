@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Genres(
     val count: Int,
-    val gamesGenres: List<GameGenre>
+    val genresList: List<Genre>
 ) : Parcelable

@@ -78,10 +78,18 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // easy adapter
     implementation "ru.surfstudio.android:easyadapter:7.0.1"
     implementation "ru.surfstudio.android:easyadapter-pagination:7.0.1"
     implementation 'ru.surfstudio.android:datalist-page-count:0.5.0'
     implementation 'ru.surfstudio.android:datalist-base:0.5.0'
+
+    //Room
+    def room_version = "2.5.2"
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
 
 }
 

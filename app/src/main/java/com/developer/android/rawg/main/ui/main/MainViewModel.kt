@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.developer.android.rawg.main.interactor.MainInteractor
 import com.developer.android.rawg.main.model.GameType
-import com.developer.android.rawg.main.model.genres.GameGenre
+import com.developer.android.rawg.main.model.games.FullGame
+import com.developer.android.rawg.main.model.genres.Genre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import ru.surfstudio.android.datalistpagecount.domain.datalist.DataList
 import ru.surfstudio.android.easyadapter.pagination.PaginationState
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,25 +33,12 @@ class MainViewModel @Inject constructor(
     private val _mainUi = MutableStateFlow<List<MainUi>>(emptyList())
     val mainUi = _mainUi.asStateFlow()
 
-    private val _rpgGenreGames = MutableStateFlow<List<GameType>>(emptyList())
-    val rpgGenreGames = _rpgGenreGames.asStateFlow()
-
-    private val _genres = MutableStateFlow<List<GameGenre>>(emptyList())
+    private val _genres = MutableStateFlow<List<Genre>>(emptyList())
     val genres = _genres.asStateFlow()
 
-    fun loadRpgGenreGames(page: Int) {
+    private fun loadGenres() {
         viewModelScope.launch {
-            val data = mainInteractor.getGames(page, GENRE_RPG).games
-            _rpgGenreGames.value = _rpgGenreGames.value.toMutableList().apply {
-                addAll(data)
-            }
-
-        }
-    }
-
-    fun loadGenres() {
-        viewModelScope.launch {
-            val data = mainInteractor.getGenres().gamesGenres
+            val data = mainInteractor.getGenres()
             _genres.value = data
             _mainUi.value = addGenres(data)
         }
@@ -57,9 +46,15 @@ class MainViewModel @Inject constructor(
 
     fun loadGames(genre: String, page: Int, position: Int) {
         viewModelScope.launch {
-            val data = mainInteractor.getGames(page, genre).games
+            try {
+
+            val data = mainInteractor.getGames(page, genre)
 
             _mainUi.value = _mainUi.value.addNewGamesByGenre(data, genre, page, position)
+
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
 
         }
     }
@@ -70,7 +65,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun List<MainUi>.addNewGamesByGenre(
-        games: List<GameType>,
+        games: List<FullGame>,
         genre: String,
         page: Int,
         position: Int
@@ -92,7 +87,7 @@ class MainViewModel @Inject constructor(
             }
         }
 
-    private fun addGenres(genres: List<GameGenre>): List<MainUi> {
+    private fun addGenres(genres: List<Genre>): List<MainUi> {
         val mainUiList: MutableList<MainUi> = mutableListOf()
         genres.forEach {
             mainUiList.add(MainUi.Genre(it.name))
